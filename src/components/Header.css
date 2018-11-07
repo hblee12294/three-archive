@@ -1,8 +1,25 @@
 header {
-  background-color: #f1f1f1;
-  padding: 1rem;
+  position: fixed;
+  left: 0;
+  right: 0;
+  padding: 1rem 2rem;
+  background-color: transparent;
+  text-align: center;
 }
 
 header h1 {
-  margin: 0;  
+  position: relative;
+  margin: 0;
+  color: #222;
+  font-weight: normal;
+  user-select: none;
+}
+
+header h1::before {
+  /* content: 'Three Archive'; */
+  position: absolute;
+  top: 1px;
+  left: -2px;
+  color: orange;
+  z-index: -1;
 }
