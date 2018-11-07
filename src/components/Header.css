@@ -1,5 +1,6 @@
 header {
   position: fixed;
+  top: 0;
   left: 0;
   right: 0;
   padding: 1rem 2rem;
@@ -13,13 +14,4 @@ header h1 {
   color: #222;
   font-weight: normal;
   user-select: none;
-}
-
-header h1::before {
-  /* content: 'Three Archive'; */
-  position: absolute;
-  top: 1px;
-  left: -2px;
-  color: orange;
-  z-index: -1;
 }

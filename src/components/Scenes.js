@@ -8,6 +8,7 @@ class Scenes extends Component {
     return (
       <main>
         <ThreeContainer />
+        <ThreeContainer />
       </main>
     )
   }

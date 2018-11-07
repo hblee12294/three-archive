@@ -7,7 +7,7 @@
 .scene {
   position: relative;
   height: 100%;
-  transition: .3s ease-out .6s;
+  transition: .2s ease-out 1.2s;
 }
 
 .scene::before, .scene::after {
@@ -18,7 +18,7 @@
   height: 40%;
   border-width: 0;
   border-style: solid;
-  transition: .2s ease-out .4s;
+  transition: .2s ease-out 1s;
 }
 
 .scene::before {
