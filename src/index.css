@@ -5,3 +5,9 @@ html, body {
   font-family: 'Bowlby One SC', cursive;
   font-size: 16px;
 }
+
+@media screen and (max-width: 500px) {
+  html, body {
+    font-size: 12px;
+  }
+}

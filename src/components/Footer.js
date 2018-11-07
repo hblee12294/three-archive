@@ -5,7 +5,7 @@ class Footer extends Component {
   render() {
     return (
       <footer>
-        HBLEE<span>&copy;</span>2018
+        <a href="https://hongbinli.com" target="_blank" rel="noopener noreferrer">HBLEE</a><span>&copy;</span>2018
       </footer>
     )
   }
