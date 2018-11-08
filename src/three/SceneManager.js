@@ -6,7 +6,7 @@ export default canvas => {
   const clock = new THREE.Clock()
   const origin = new THREE.Vector3(0, 0, 0)
 
-  const screenDimensions = {
+  const canvasDimension = {
     width: canvas.width,
     height: canvas.height
   }
@@ -16,59 +16,66 @@ export default canvas => {
     y: 0
   }
 
-  const scene = buildScene()
-  const renderer = buildRender(screenDimensions)
-  const camera = buildCamera(screenDimensions)
-  const sceneSubjects = createSceneSubjects(scene)
+  const scene = createScene()
+  const renderer = createRender(canvasDimension)
+  const camera = createCamera(canvasDimension)
+  const objects = createObjects(scene)
 
-  function buildScene() {
+  // --- Functions ---
+
+  function createScene() {
     const scene = new THREE.Scene()
-    scene.background = new THREE.Color('#fff')
+    scene.background = new THREE.Color('#ffffff')
 
     return scene
   }
 
-  function buildRender({ width, height }) {
-    const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias:true, alpha: true })
+  function createRender({ width, height }) {
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true })
     const DPR = window.devicePixelRatio ? window.devicePixelRatio : 1
     renderer.setPixelRatio(DPR)
     renderer.setSize(width, height)
 
+    renderer.gammaInput = true
+    renderer.gammaOutput = true
+
     return renderer
   }
 
-  function buildCamera({ width, height }) {
+  function createCamera({ width, height }) {
     const aspectRatio = width / height
-    const fieldOfView = 60
+    const fov = 60
     const nearPlane = 4
-    const farPlane = 100
-    const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane)
+    const farPlane = 1000
+    const camera = new THREE.PerspectiveCamera(fov, aspectRatio, nearPlane, farPlane)
 
-    camera.position.z = 40
+    camera.position.z = 50
 
     return camera
   }
 
-  function createSceneSubjects(scene) {
-    const sceneSubjects = [
+  // Multiple objects
+  function createObjects(scene) {
+    const objects = [
       new GeneralLights(scene),
       new SceneSubject(scene)
     ]
 
-    return sceneSubjects
+    return objects
   }
 
   function update() {
     const elapsedTime = clock.getElapsedTime()
 
-    for (let i = 0; i < sceneSubjects.length; ++i) {
-      sceneSubjects[i].update(elapsedTime)
+    for (let i = 0; i < objects.length; ++i) {
+      objects[i].update(elapsedTime)
 
       updateCameraPositionRelativeToMouse()
       renderer.render(scene, camera)
     }
   }
 
+  // How it works ???
   function updateCameraPositionRelativeToMouse() {
     camera.position.x += (  (mousePosition.x * 0.01) - camera.position.x ) * 0.01
     camera.position.y += ( -(mousePosition.y * 0.01) - camera.position.y ) * 0.01
@@ -76,10 +83,11 @@ export default canvas => {
   }
 
   function onWindowResize() {
+    // Get width, height attributes from <canvas>
     const { width, height } = canvas
 
-    screenDimensions.width = width
-    screenDimensions.height = height
+    canvasDimension.width = width
+    canvasDimension.height = height
 
     camera.aspect = width / height
     camera.updateProjectionMatrix()
@@ -87,6 +95,7 @@ export default canvas => {
     renderer.setSize(width, height)
   }
 
+  // Update mouse position
   function onMouseMove(x, y) {
     mousePosition.x = x
     mousePosition.y = y
