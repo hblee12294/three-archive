@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
-import threeEntryPoint from '../three/threeEntryPoint'
-
 import './ThreeContainer.css'
 
 export default class ThreeContainer extends Component {
   componentDidMount() {
-    threeEntryPoint(this.threeRootElement)
+    this.props.three(this.threeRootElement)
   }
 
   render() {
     return (
-      <div className="scene-wrap">
+      <div className="container">
         <div
-          className="scene"
+          className="three-root"
           ref={ element => this.threeRootElement = element }
         />
       </div>
