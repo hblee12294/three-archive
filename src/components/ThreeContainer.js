@@ -3,7 +3,7 @@ import './ThreeContainer.css'
 
 export default class ThreeContainer extends Component {
   componentDidMount() {
-    this.props.three(this.threeRootElement)
+    this.props.model(this.threeRootElement)
   }
 
   render() {

@@ -3,15 +3,14 @@ import './Main.css'
 
 import ThreeContainer from './ThreeContainer'
 
-// tree scenes lists
-import threeObj from '../three/threeEntryPoint'
+import Pier from '../three/Pier/Pier'
 
 class Main extends Component {
   render() {
     return (
       <main>
-        <ThreeContainer three={ threeObj } />
-        <ThreeContainer three={ threeObj } />
+        <ThreeContainer model={ Pier } />
+        <ThreeContainer model={ Pier } />
       </main>
     )
   }
