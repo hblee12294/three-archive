@@ -6,8 +6,6 @@ import Subject from './Subject'
 export default container => {
   const canvas = new ThreeConstructor(container)
 
-  const clock = new THREE.Clock()
-
   const mousePosition = {
     x: 0,
     y: 0
@@ -39,17 +37,15 @@ export default container => {
     renderer.setPixelRatio(DPR)
     renderer.setSize(canvas.width, canvas.height)
 
-    renderer.gammaInput = true
-    renderer.gammaOutput = true
-
     return renderer
   }
 
   function createCamera(canvas) {
     const aspectRatio = canvas.width / canvas.height
     const fov = 60
-    const nearPlane = 4
+    const nearPlane = 1
     const farPlane = 1000
+
     const camera = new THREE.PerspectiveCamera(
       fov,
       aspectRatio,
@@ -63,13 +59,11 @@ export default container => {
   }
 
   function createSubjects(scene) {
-    const subjects = [new Light(scene), new Subject(scene)]
-
-    return subjects
+    new Light(scene)
+    new Subject(scene)
   }
 
   function onWindowResize() {
-    // Get width, height attributes from <canvas>
     const { width, height } = canvas.el
 
     camera.aspect = width / height
@@ -78,27 +72,20 @@ export default container => {
     renderer.setSize(width, height)
   }
 
-  // Update mouse position
   function onMouseMove(x, y) {
     mousePosition.x = x
     mousePosition.y = y
   }
 
   function updateCameraPositionRelativeToMouse() {
-    camera.position.x += (mousePosition.x * 0.01 - camera.position.x) * 0.01
-    camera.position.y += (-(mousePosition.y * 0.01) - camera.position.y) * 0.01
+    camera.position.x += (mousePosition.x * 0.01 - camera.position.x) * 0.1
+    camera.position.y += (-mousePosition.y * 0.01 - camera.position.y) * 0.1
     camera.lookAt(scene.position)
   }
 
   function update() {
-    const elapsedTime = clock.getElapsedTime()
-
-    for (let i = 0; i < subjects.length; ++i) {
-      subjects[i].update(elapsedTime)
-
-      updateCameraPositionRelativeToMouse()
-      renderer.render(scene, camera)
-    }
+    updateCameraPositionRelativeToMouse()
+    renderer.render(scene, camera)
   }
 
   function render() {
