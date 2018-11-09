@@ -14,7 +14,7 @@ export default container => {
   const scene = createScene()
   const renderer = createRenderer(canvas.el)
   const camera = createCamera(canvas.el)
-  const subjects = createSubjects(scene)
+  const subject = createSubjects(scene)
 
   init()
 
@@ -60,7 +60,9 @@ export default container => {
 
   function createSubjects(scene) {
     new Light(scene)
-    new Subject(scene)
+    const subject = new Subject(scene)
+
+    return subject
   }
 
   function onWindowResize() {
@@ -84,6 +86,7 @@ export default container => {
   }
 
   function update() {
+    subject.update()
     updateCameraPositionRelativeToMouse()
     renderer.render(scene, camera)
   }
