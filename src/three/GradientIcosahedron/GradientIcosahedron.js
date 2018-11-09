@@ -14,7 +14,7 @@ export default container => {
   const scene = createScene()
   const renderer = createRenderer(canvas.el)
   const camera = createCamera(canvas.el)
-  const subject = createSubjects(scene)
+  const subjects = createSubjects(scene)
 
   init()
 
@@ -22,7 +22,7 @@ export default container => {
 
   function createScene() {
     const scene = new THREE.Scene()
-    scene.background = new THREE.Color(0xffffff)
+    scene.background = new THREE.Color('#ffffff')
 
     return scene
   }
@@ -41,16 +41,17 @@ export default container => {
   }
 
   function createCamera(canvas) {
-    const fov = 60
     const aspectRatio = canvas.width / canvas.height
+    const fov = 60
     const nearPlane = 1
     const farPlane = 1000
-    const camera = new THREE.PerspectiveCamera({
+
+    const camera = new THREE.PerspectiveCamera(
       fov,
       aspectRatio,
       nearPlane,
       farPlane
-    })
+    )
 
     camera.position.z = 50
 
@@ -77,8 +78,8 @@ export default container => {
   }
 
   function updateCameraPositionRelativeToMouse() {
-    camera.position.x += (mousePosition.x * 0.01  - camera.position.x) * 0.1
-    camera.position.y += (-(mousePosition.y * 0.01 ) - camera.position.y) * 0.1
+    camera.position.x += (mousePosition.x * 0.01 - camera.position.x) * 0.1
+    camera.position.y += (-mousePosition.y * 0.01 - camera.position.y) * 0.1
     camera.lookAt(scene.position)
   }
 

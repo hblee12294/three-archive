@@ -4,7 +4,7 @@ import './Main.css'
 import ThreeContainer from './ThreeContainer'
 
 import Pier from '../three/Pier/Pier'
-import GradientIcosahedron from '../three/GradientIcosahedron/GradientIcosahedron2'
+import GradientIcosahedron from '../three/GradientIcosahedron/GradientIcosahedron'
 
 class Main extends Component {
   render() {

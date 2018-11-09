@@ -14,7 +14,7 @@ export default container => {
   const scene = createScene()
   const renderer = createRenderer(canvas.el)
   const camera = createCamera(canvas.el)
-  const subjects = createSubjects(scene)
+  const subject = createSubjects(scene)
 
   init()
 
@@ -22,7 +22,7 @@ export default container => {
 
   function createScene() {
     const scene = new THREE.Scene()
-    scene.background = new THREE.Color('#ffffff')
+    scene.background = new THREE.Color(0xffffff)
 
     return scene
   }
@@ -41,17 +41,18 @@ export default container => {
   }
 
   function createCamera(canvas) {
-    const aspectRatio = canvas.width / canvas.height
     const fov = 60
+    const aspectRatio = canvas.width / canvas.height
     const nearPlane = 1
     const farPlane = 1000
 
-    const camera = new THREE.PerspectiveCamera(
+    // *** ERROR happends here! There shouldn't have curly braces around parameters ***
+    const camera = new THREE.PerspectiveCamera({
       fov,
       aspectRatio,
       nearPlane,
       farPlane
-    )
+    })
 
     camera.position.z = 50
 
@@ -78,8 +79,8 @@ export default container => {
   }
 
   function updateCameraPositionRelativeToMouse() {
-    camera.position.x += (mousePosition.x * 0.01 - camera.position.x) * 0.1
-    camera.position.y += (-mousePosition.y * 0.01 - camera.position.y) * 0.1
+    camera.position.x += (mousePosition.x * 0.01  - camera.position.x) * 0.1
+    camera.position.y += (-(mousePosition.y * 0.01 ) - camera.position.y) * 0.1
     camera.lookAt(scene.position)
   }
 
