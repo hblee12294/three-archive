@@ -4,6 +4,9 @@ html, body {
   color: #1b1b1b;
   font-family: 'Bowlby One SC', cursive;
   font-size: 16px;
+  /* Remove tap side effects on mobile devices (iOS) */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  
 }
 
 @media screen and (max-width: 500px) {
