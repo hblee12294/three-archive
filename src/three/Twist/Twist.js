@@ -1,6 +1,5 @@
 import * as THREE from 'three'
 import ThreeConstructor from '../common/ThreeConstructor'
-import Light from './Light'
 import Subject from './Subject'
 
 export default container => {
@@ -22,26 +21,26 @@ export default container => {
 
   function createScene() {
     const scene = new THREE.Scene()
-    scene.background = new THREE.Color('#ffffff')
+    scene.background = new THREE.Color(0xffffff)
 
     return scene
   }
 
   function createRenderer(canvas) {
     const renderer = new THREE.WebGLRenderer({
-      canvas: canvas,
-      antialias: true
+      canvas,
+      antialias: true,
     })
+
     const DPR = window.devicePixelRatio ? window.devicePixelRatio : 1
     renderer.setPixelRatio(DPR)
     renderer.setSize(canvas.width, canvas.height)
-
     return renderer
   }
 
   function createCamera(canvas) {
-    const aspectRatio = canvas.width / canvas.height
     const fov = 60
+    const aspectRatio = canvas.width / canvas.height
     const nearPlane = 1
     const farPlane = 1000
 
@@ -58,7 +57,6 @@ export default container => {
   }
 
   function createSubjects(scene) {
-    new Light(scene)
     const subject = new Subject(scene)
 
     return subject
