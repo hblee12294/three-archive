@@ -2,6 +2,7 @@
   "name": "three-archive",
   "version": "0.1.0",
   "author": "hblee",
+  "homepage": "https://hongbinli.com/three-archive",
   "private": true,
   "dependencies": {
     "@babel/core": "7.1.0",
@@ -58,7 +59,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -116,6 +119,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^2.0.1",
     "prettier": "^1.14.3"
   }
 }
