@@ -103,6 +103,7 @@
 .marquee span {
   float: left;
   width: 50%;
+  white-space: pre;
 }
 
 @keyframes marquee {

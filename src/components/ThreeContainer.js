@@ -16,8 +16,8 @@ export default class ThreeContainer extends Component {
           <div className="info-icon">I</div>
           <div className="marquee">
             <div className="marquee-inner">
-              <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
-              <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+              <span>{ this.props.description }</span>
+              <span>{ this.props.description }</span>
             </div>
           </div>
         </div>
