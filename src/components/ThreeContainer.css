@@ -38,7 +38,7 @@
 .three-root:hover::before,
 .three-root:hover::after {
   border-width: .8rem;
-  transition: .2s ease-out 1.2s;
+  transition: .2s ease-out 1s;
 }
 
 .three-root:hover {
@@ -49,4 +49,63 @@
 /* Disable canvas selection */
 .container canvas {
   user-select: none;
+}
+
+.info-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  height: 1rem;
+  width: 1rem;
+  border: 3px solid #1b1b1b;
+  font-size: .5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  text-align: center;
+  transition: .2s ease 0s;
+  transform: scale(0);
+  user-select: none;
+}
+
+.three-root:hover .info-icon {
+  transform: scale(1);
+  transition: transform .2s ease 1.4s;
+}
+
+.info-icon:hover {
+  color: #fff;
+  background-color: #1b1b1b;
+  /* transition: .2s ease; */
+}
+
+/* Marquee */
+.marquee {
+  display: none;
+  position: absolute;
+  right: 0;
+  bottom: .5rem;
+  left: 0;
+  height: 1.3rem;
+  overflow: hidden;
+}
+
+.info-icon:hover+.marquee {
+  display: block;
+}
+
+.marquee-inner {
+  position: absolute;
+  width: 200%;
+  overflow: absolute;
+  animation: marquee 10s linear infinite;
+}
+
+.marquee span {
+  float: left;
+  width: 50%;
+}
+
+@keyframes marquee {
+  0% { left: 0; }
+  100% { left: -100%; }
 }
