@@ -11,8 +11,8 @@ class Main extends Component {
   render() {
     return (
       <main>
-        <ThreeContainer model={ Pier } />
         <ThreeContainer model={ GradientIcosahedron } />
+        <ThreeContainer model={ Pier } />
         <ThreeContainer model={ Twist } />
       </main>
     )

@@ -3,7 +3,7 @@ import * as THREE from 'three'
 export default scene => {
   const geometry = new THREE.BoxGeometry(20, 20, 20, 20, 20, 20)
   const material = new THREE.MeshNormalMaterial({
-    wireframe: true
+    // wireframe: true
   })
   const cube = new THREE.Mesh(geometry, material)
 
