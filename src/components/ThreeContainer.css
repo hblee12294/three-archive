@@ -51,6 +51,7 @@
   user-select: none;
 }
 
+/* Info icon */
 .info-icon {
   position: absolute;
   top: 1rem;
@@ -63,19 +64,28 @@
   cursor: pointer;
   text-align: center;
   transition: .2s ease 0s;
-  transform: scale(0);
+  transform: scale(0) rotate(0deg);
   user-select: none;
 }
 
+.info-icon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 25%;
+  height: 60%;
+  transform: translate(-50%, -50%);
+  background-color: #1b1b1b;
+}
+
 .three-root:hover .info-icon {
-  transform: scale(1);
-  transition: transform .2s ease 1.4s;
+  transform: scale(1) rotate(-360deg);
+  transition: transform .2s ease 1.5s;
 }
 
 .info-icon:hover {
-  color: #fff;
-  background-color: #1b1b1b;
-  /* transition: .2s ease; */
+  animation: rotate 7s linear infinite;
 }
 
 /* Marquee */
@@ -83,7 +93,7 @@
   display: none;
   position: absolute;
   right: 0;
-  bottom: .5rem;
+  bottom: 1rem;
   left: 0;
   height: 1.3rem;
   overflow: hidden;
@@ -95,8 +105,9 @@
 
 .marquee-inner {
   position: absolute;
+  left: 0;
   width: 200%;
-  overflow: absolute;
+  overflow: hidden;
   animation: marquee 10s linear infinite;
 }
 
@@ -106,7 +117,50 @@
   white-space: pre;
 }
 
+/* Font-size cannot be smaller at this width (index.css ->)
+ * Continuous effect must be interupted
+ * Hide right-line and reset marquee-inner as whole single line 
+ */
+@media screen and (max-width: 900px) {
+  .marquee-inner {
+    width: auto;
+    animation: marquee-single 13s linear infinite;
+  }
+
+  .marquee span {
+    width: 100%;
+  }
+
+  .right-line {
+    display: none;
+  }
+
+  /* Touch and show effects  */
+  .three-root:hover::before,
+  .three-root:hover::after {
+    border-width: .8rem;
+    transition: .2s ease-out;
+  }
+
+  .three-root:hover {
+    transition: .2s ease-out .2s;
+  }
+
+  .three-root:hover .info-icon {
+    transition: transform .2s ease .2s;
+  }
+}
+
 @keyframes marquee {
-  0% { left: 0; }
-  100% { left: -100%; }
+  to { left: -100%; }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg) }
+  to { transform: rotate(-360deg) }
+}
+
+@keyframes marquee-single {
+  from { transform: translateX(50%) }
+  to { transform: translateX(-100%) }
 }

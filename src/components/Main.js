@@ -13,7 +13,7 @@ const modelList = [{
   description: 'geometry - icosahedron   material - meshphong   light - directional   effect - rotation'
 }, {
   name: 'Pier',
-  model: Pier,
+  model: Pier, // with longest description
   description: 'geometry - icosahedron, edges   material - meshstandard, linebasic   light - point   effect - scale'
 }, {
   name: 'Twist',

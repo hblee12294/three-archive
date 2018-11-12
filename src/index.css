@@ -9,7 +9,19 @@ html, body {
   
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 1205px) {
+  html, body {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  html, body {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 970px) {
   html, body {
     font-size: 12px;
   }

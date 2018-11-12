@@ -13,11 +13,11 @@ export default class ThreeContainer extends Component {
           className="three-root"
           ref={element => (this.threeRootElement = element)}
         >
-          <div className="info-icon">I</div>
+          <div className="info-icon"></div>
           <div className="marquee">
             <div className="marquee-inner">
-              <span>{ this.props.description }</span>
-              <span>{ this.props.description }</span>
+              <span className="left-line">{ this.props.description }</span>
+              <span className="right-line">{ this.props.description }</span>
             </div>
           </div>
         </div>
